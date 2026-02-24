@@ -3,7 +3,7 @@ import time
 import pandas as pd
 from datetime import datetime
 
-
+import sqlite3
 class PerformanceTracker:
 
     def __init__(self, interval_seconds=10):
@@ -31,7 +31,11 @@ class PerformanceTracker:
 
     def export_to_csv(self, filename="performance_log.csv"):
         df = pd.DataFrame(self.data)
-        df.to_csv(filename, index=False)
+        conn =
+        sqlite3.connect("performance.db")
+        df.to_sql("activity_log",conn,if_exists="append",index=false)
+        ()conn.close
+        print("performance data saved to sqlite database(performance.db)")
         print(f"Performance log saved to {filename}")
 
 
